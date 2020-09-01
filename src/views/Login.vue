@@ -39,7 +39,17 @@ export default {
     }),
     methods: {
         login() {
-            axios.post('/login', { account: this.account, password: this.password })
+            const route = '/login' //這個是你們後端定義的路徑
+            axios
+                .post(route, { account: this.account, password: this.password }) // 這會是登入需要帶的參數, 也是由後端定義
+                .then(() => {
+                    // 成功之後在這裡要做成功後要做的事情
+                    this.$router.push('/')
+                })
+                .catch(error => {
+                    // 失敗之後在這裡要做失敗後要做的事情
+                    throw error
+                })
         }
     }
 }
