@@ -5,32 +5,31 @@ Vue.use(VueRouter)
 
 const routes = [
     {
-        path: '/',
+        path: '/home',
         name: 'Home',
-        component: () => import(/* webpackChunkName: "Home" */ '@/views/Home.vue')
-    },
-    {
-        path: '/audit',
-        name: 'Audit',
-        component: () => import(/* webpackChunkName: "Audit" */ '@/views/Audit.vue')
+        component: () => import(/* webpackChunkName: "Home" */ '@/views/Home.vue'),
+        children: [
+            {
+                path: 'subject',
+                name: 'Subject',
+                component: () => import(/* webpackChunkName: "Subject" */ '@/views/Subject.vue')
+            },
+            {
+                path: 'audit',
+                name: 'Audit',
+                component: () => import(/* webpackChunkName: "Audit" */ '@/views/Audit.vue')
+            },
+            {
+                path: 'schedule',
+                name: 'Schedule',
+                component: () => import(/* webpackChunkName: "Schedule" */ '@/views/Schedule.vue')
+            }
+        ]
     },
     {
         path: '/login',
         name: 'Login',
-
         component: () => import(/* webpackChunkName: "Login" */ '@/views/Login.vue')
-    },
-    {
-        path: '/schedule',
-        name: 'Schedule',
-
-        component: () => import(/* webpackChunkName: "Schedule" */ '@/views/Schedule.vue')
-    },
-    {
-        path: '/subject',
-        name: 'Subject',
-
-        component: () => import(/* webpackChunkName: "Subject" */ '@/views/Subject.vue')
     },
     {
         path: '/register',
