@@ -20,7 +20,8 @@
                         </template>
                         <template v-else>
                             <td class="sub" v-for="item in date" :key="item.subId" :id="item.subId">
-                                <label>{{ item.subLable }}</label>
+                                <label v-if="!item.subLable">{{ scheduleForm[item.subId] }}</label>
+                                <label v-else>{{ item.subLable }}</label>
                             </td>
                         </template>
                     </tr>
@@ -52,6 +53,48 @@ export default {
             { title: '我央', subjectId: 's0107038', classTime: '2020/09/21', score: 5 },
             { title: '大頭包小頭', subjectId: 's0102039', classTime: '2020/09/21', score: 2 }
         ],
+        scheduleForm: {
+            '1-1': null,
+            '1-2': null,
+            '1-3': null,
+            '1-4': null,
+            '1-5': null,
+            '2-1': null,
+            '2-2': null,
+            '2-3': null,
+            '2-4': null,
+            '2-5': null,
+            '3-1': null,
+            '3-2': null,
+            '3-3': null,
+            '3-4': null,
+            '3-5': null,
+            '4-1': null,
+            '4-2': null,
+            '4-3': null,
+            '4-4': null,
+            '4-5': null,
+            '5-1': null,
+            '5-2': null,
+            '5-3': null,
+            '5-4': null,
+            '5-5': null,
+            '6-1': null,
+            '6-2': null,
+            '6-3': null,
+            '6-4': null,
+            '6-5': null,
+            '7-1': null,
+            '7-2': null,
+            '7-3': null,
+            '7-4': null,
+            '7-5': null,
+            '8-1': null,
+            '8-2': null,
+            '8-3': null,
+            '8-4': null,
+            '8-5': null
+        },
         dragTarget: null
     }),
     computed: {
@@ -68,10 +111,12 @@ export default {
     },
     methods: {
         drop(event) {
-            console.log(event)
+            let targetId = event.target.id
+            console.log(targetId)
+            console.log(this.scheduleForm[targetId])
+            if (this.scheduleForm[targetId] !== undefined) this.scheduleForm[targetId] = this.dragTarget.title
         },
         drag(item) {
-            console.log(item)
             this.dragTarget = item
         }
     }
